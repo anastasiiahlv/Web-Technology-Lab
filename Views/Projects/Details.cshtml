@@ -1,0 +1,50 @@
+﻿@model ProjectManagementSystem.Models.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Інформація про проєкт</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<h3>Завдання</h3>
+@if (Model.Tasks.Any())
+{
+    <ul>
+        @foreach (var task in Model.Tasks)
+        {
+            <li>
+                <a asp-controller="Tasks" asp-action="Details" asp-route-id="@task.Id">
+                    @task.Name
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Завдань немає.</p>
+}
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редагувати</a> |
+    <a asp-action="Index">Повернутись до проєктів</a> |
+    <a asp-controller="Tasks" asp-action="Create" asp-route-projectId="@Model?.Id" class="btn btn-primary">Додати завдання</a>
+</div>

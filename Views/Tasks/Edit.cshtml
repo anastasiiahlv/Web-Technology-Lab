@@ -1,0 +1,103 @@
+﻿@model ProjectManagementSystem.Models.Task
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Редагування завдання</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DueDate" class="control-label"></label>
+                <input asp-for="DueDate" class="form-control" />
+                <span asp-validation-for="DueDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUrl" class="control-label">Попередній файл</label>
+                @if (!string.IsNullOrEmpty(Model.FileUrl))
+                {
+                    <a href="@Url.Content(Model.FileUrl)" download>Завантажити файл</a>
+                }
+                else
+                {
+                    <span>Файл не завантажено</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="File" class="control-label">Завантажити новий файл</label>
+                <input type="file" class="form-control" id="File" name="File" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employees" class="control-label">Працівники</label>
+                <select asp-for="Employees"
+                        class="selectpicker form-control"
+                        multiple
+                        data-size="5"
+                        data-live-search="true"
+                        asp-items="ViewBag.Employees"
+                        title="Оберіть працівників для цього завдання"></select>
+                <span asp-validation-for="Employees" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутись до завдань</a>
+</div>
+
+<script>$('select').selectpicker();</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            const dueDateInput = document.querySelector('#DueDate');
+            const dueDate = new Date(dueDateInput.value);
+            const now = new Date();
+
+            if (dueDate < now) {
+                alert('Дата виконання не має бути задана минулим часом.');
+                event.preventDefault();
+            }
+        });
+    });
+</script>

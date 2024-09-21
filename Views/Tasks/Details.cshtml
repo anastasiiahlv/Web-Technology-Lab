@@ -1,0 +1,76 @@
+﻿@model ProjectManagementSystem.Models.Task
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Інформація про завдання</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Проєкт
+        </dt>
+        <dd class="col-sm-10">
+            @Html.ActionLink(Model.Project.Name, "Details", "Projects", new { id = Model.Project.Id }, null)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt class="col-sm-2">Файл з додатковою інформацією</dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.FileUrl))
+            {
+                <a href="@Url.Content(Model.FileUrl)" download>Завантажити файл</a>
+            }
+            else
+            {
+                <span>Файл не завантажено</span>
+            }
+        </dd>
+    </dl>
+</div>
+<h3>Робоча група</h3>
+@if (Model.Employees.Any())
+{
+    <ul>
+        @foreach (var employee in Model.Employees)
+        {
+            <li>
+                <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">
+                    @employee.FullName
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Список пустий.</p>
+}
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редагувати</a> |
+    <a asp-action="Delete" asp-route-id="@Model?.Id">Видалити</a>
+</div>

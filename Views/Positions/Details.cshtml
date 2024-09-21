@@ -1,0 +1,41 @@
+﻿@model ProjectManagementSystem.Models.Position
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Інформація про позицію</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<h3>Працівники</h3>
+@if (Model.Employees.Any())
+{
+    <ul>
+        @foreach (var employee in Model.Employees)
+        {
+            <li>
+                <a asp-controller="Employees" asp-action="Details" asp-route-id="@employee.Id">
+                    @employee.FullName
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Нікого на даній позиції немає.</p>
+}
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Редагувати</a> |
+    <a asp-action="Index">Повернутись до позицій</a>
+</div>
