@@ -91,10 +91,29 @@ namespace ProjectManagementSystem.ApiControllers
                 return NotFound(new { message = "Немає завданян з таким ID.", code = 404 });
             }
 
+            var result = new
+            {
+                taskId = task.Id,
+                name = task.Name,
+                description = task.Description,
+                dueDate = task.DueDate,
+                fileUrl = task.FileUrl,
+                statusId = task.StatusId,
+                projectId = task.ProjectId,
+                employees = task.Employees?.Select(employee => new
+                {
+                    employeeId = employee?.Id,
+                    employeeName = employee?.Name,
+                    employeeSurname = employee?.Surname,
+                    employeeEmail = employee?.PhoneNumber,
+                    employeePosition = employee?.Position?.Name,
+                })
+            };
+
             return Ok(new
             {
                 code = 200,
-                data = task
+                data = result
             });
         }
 
@@ -108,11 +127,30 @@ namespace ProjectManagementSystem.ApiControllers
                 return BadRequest(FormResponse("Запит на оновлення завдання містить невірний ідентифікатор.", 400));
             }
             var existingTask = await _context.Tasks
-                    .FirstOrDefaultAsync(t => t.Name == task.Name && t.Description == task.Description && 
-                    t.Employees == task.Employees && t.Id != id);
+                .Include(t => t.Employees) 
+                .FirstOrDefaultAsync(t => t.Name == task.Name && t.Description == task.Description && t.Id != id);
+
             if (existingTask != null)
             {
-                return Conflict(FormResponse("Таке завдання вже існує.", 409));
+                bool employeesMatch = task.Employees.All(e => existingTask.Employees.Any(et => et.Id == e.Id)) &&
+                                      existingTask.Employees.All(et => task.Employees.Any(e => e.Id == et.Id));
+
+                if (employeesMatch)
+                {
+                    return Conflict(FormResponse("Таке завдання вже існує.", 409));
+                }
+            }
+
+            var projectExists = await _context.Positions.AnyAsync(p => p.Id == task.ProjectId);
+            if (!projectExists)
+            {
+                return BadRequest(FormResponse($"Проєкт з ID {task.ProjectId} не знайдено.", 400));
+            }
+
+            var statusExists = await _context.Statuses.AnyAsync(s => s.Id == task.StatusId);
+            if (!statusExists)
+            {
+                return BadRequest(FormResponse($"Статус з ID {task.StatusId} не знайдено.", 400));
             }
 
             _context.Entry(task).State = EntityState.Modified;
@@ -149,11 +187,23 @@ namespace ProjectManagementSystem.ApiControllers
                 return BadRequest(new { message = "Валідація не пройшла успішно.", errors });
             }
 
-            if (_context.Tasks.Any(t => t.Name == task.Name && t.Description == task.Description &&
+            var projectExists = await _context.Projects.AnyAsync(p => p.Id == task.ProjectId);
+            if (!projectExists)
+            {
+                return BadRequest(new { message = $"Проєкт з ID {task.ProjectId} не знайдено." });
+            }
+
+            var statusExists = await _context.Statuses.AnyAsync(s => s.Id == task.StatusId);
+            if (!statusExists)
+            {
+                return BadRequest(new { message = $"Статус з ID {task.StatusId} не знайдено." });
+            }
+
+            /*if (_context.Tasks.Any(t => t.Name == task.Name && t.Description == task.Description &&
                     t.Employees == task.Employees))
             {
                 return Conflict(FormResponse("Таке завдання вже існує.", 409));
-            }
+            }*/
 
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();

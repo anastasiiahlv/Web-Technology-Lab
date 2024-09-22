@@ -94,10 +94,31 @@ namespace ProjectManagementSystem.ApiControllers
                 return NotFound(new { message = "Немає працівника з таким ID.", code = 404 });
             }
 
+            var result = new
+            {
+                employeeId = employee.Id,
+                name = employee.Name,
+                surname = employee.Surname,
+                email = employee.Email,
+                phoneNumber = employee.PhoneNumber,
+                positionId = employee.PositionId,
+                position = employee.Position?.Name,
+                tasks = employee.Tasks?.Select(task => new
+                {
+                    taskId = task.Id,
+                    taskName = task.Name,
+                    taskDescription = task.Description,
+                    taskDueDate = task.DueDate,
+                    taskFileUrl = task.FileUrl,
+                    taskStatus = task.Status?.Name,
+                    taskProject = task.Project?.Name
+                })
+            };
+
             return Ok(new
             {
                 code = 200,
-                data = employee
+                data = result
             });
         }
 
@@ -115,6 +136,12 @@ namespace ProjectManagementSystem.ApiControllers
             if (existingEmployee != null)
             {
                 return Conflict(FormResponse("Працівник з такою електронною поштою вже існує.", 409));
+            }
+
+            var positionExists = await _context.Positions.AnyAsync(p => p.Id == employee.PositionId);
+            if (!positionExists)
+            {
+                return BadRequest(FormResponse($"Посада з ID {employee.PositionId} не знайдена.", 400));
             }
 
             _context.Entry(employee).State = EntityState.Modified;
@@ -149,6 +176,12 @@ namespace ProjectManagementSystem.ApiControllers
                                                .Select(e => e.ErrorMessage)
                                                .ToList();
                 return BadRequest(new { message = "Валідація не пройшла успішно.", errors });
+            }
+
+            var positionExists = await _context.Projects.AnyAsync(p => p.Id == employee.PositionId);
+            if (!positionExists)
+            {
+                return BadRequest(new { message = $"Проєкт з ID {employee.PositionId} не знайдено." });
             }
 
             if (_context.Employees.Any(e => e.Email == employee.Email))

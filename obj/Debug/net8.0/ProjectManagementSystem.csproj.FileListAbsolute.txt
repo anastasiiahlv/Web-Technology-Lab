@@ -243,3 +243,4 @@ C:\Users\USER\Desktop\univ\web технології\ProjectManagementSystem\obj\
 C:\Users\USER\Desktop\univ\web технології\ProjectManagementSystem\obj\Debug\net8.0\ProjectManagementSystem.pdb
 C:\Users\USER\Desktop\univ\web технології\ProjectManagementSystem\obj\Debug\net8.0\ProjectManagementSystem.genruntimeconfig.cache
 C:\Users\USER\Desktop\univ\web технології\ProjectManagementSystem\obj\Debug\net8.0\ref\ProjectManagementSystem.dll
+C:\Users\USER\Desktop\univ\web технології\ProjectManagementSystem\obj\Debug\net8.0\ProjectManagementSystem.sourcelink.json

@@ -32,7 +32,7 @@ namespace ProjectManagementSystem.ApiControllers
                     taskName = task?.Name,
                     taskDescription = task?.Description,
                     taskDueDate = task?.DueDate,
-                    taskFikeUrl = task?.FileUrl,
+                    taskFileUrl = task?.FileUrl,
                     taskProject = task?.Project?.Name
                 })
             }).ToList();
@@ -83,10 +83,26 @@ namespace ProjectManagementSystem.ApiControllers
                 return NotFound(new { message = "Немає статуса з таким ID.", code = 404 });
             }
 
+            var result = new
+            {
+                statusId = status.Id,
+                name = status.Name,
+                tasks = status.Tasks?.Select(task => new
+                {
+                    taskId = task?.Id,
+                    taskName = task?.Name,
+                    taskDescription = task?.Description,
+                    taskDueDate = task?.DueDate,
+                    taskFileUrl = task?.FileUrl,
+                    taskProject = task?.Project?.Name
+                })
+            };
+        
+
             return Ok(new
             {
                 code = 200,
-                data = status
+                data = result
             });
         }
 

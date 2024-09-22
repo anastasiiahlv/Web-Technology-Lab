@@ -1,15 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    { 
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.WriteIndented = true; 
+    });
 
 builder.Services.AddDbContext<ProjectManagementSystemContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

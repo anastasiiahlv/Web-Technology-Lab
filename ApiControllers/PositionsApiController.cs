@@ -29,7 +29,7 @@ namespace ProjectManagementSystem.ApiControllers
                 name = p.Name,
                 employees = p.Employees?.Select(employee => new
                 {
-                    participantId = employee?.Id,
+                    employeeId = employee?.Id,
                     name = employee?.Name,
                     surname = employee?.Surname,
                     email = employee?.Email,
