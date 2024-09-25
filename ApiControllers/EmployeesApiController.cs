@@ -141,7 +141,7 @@ namespace ProjectManagementSystem.ApiControllers
             var positionExists = await _context.Positions.AnyAsync(p => p.Id == employee.PositionId);
             if (!positionExists)
             {
-                return BadRequest(FormResponse($"Посада з ID {employee.PositionId} не знайдена.", 400));
+                return BadRequest(new { message = $"Позиція з ID {employee.PositionId} не знайдена." });
             }
 
             _context.Entry(employee).State = EntityState.Modified;
@@ -181,7 +181,7 @@ namespace ProjectManagementSystem.ApiControllers
             var positionExists = await _context.Projects.AnyAsync(p => p.Id == employee.PositionId);
             if (!positionExists)
             {
-                return BadRequest(new { message = $"Проєкт з ID {employee.PositionId} не знайдено." });
+                return BadRequest(new { message = $"Позиція з ID {employee.PositionId} не знайдена." });
             }
 
             if (_context.Employees.Any(e => e.Email == employee.Email))

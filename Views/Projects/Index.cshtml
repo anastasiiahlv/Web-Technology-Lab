@@ -39,3 +39,42 @@
 }
     </tbody>
 </table>
+
+<div class="container">
+    <div id="taskStatusColumnChart"></div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.get('api/Charts/TaskCountsByProjectJson', function (JsonData) {
+                var data = google.visualization.arrayToDataTable(JsonData.$values, false);
+
+                var options = {
+                    title: "Порівняння кількості завдань за проєктами",
+                    isStacked: true, 
+                    titleTextStyle: {
+                        fontSize: 22,
+                        bold: true
+                    },
+                    width: 600,
+                    height: 500,
+                    hAxis: {
+                        title: 'Кількість завдань'
+                    },
+                    vAxis: {
+                        title: 'Проєкти'
+                    },
+                    legend: { position: 'top' }
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('taskStatusColumnChart'));
+                chart.draw(data, options);
+            });
+        }
+    </script>
+}

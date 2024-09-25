@@ -177,7 +177,7 @@ namespace ProjectManagementSystem.ApiControllers
         // POST: api/TasksApi
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Models.Task>> PostTask(Models.Task task)
+        public async Task<ActionResult<Models.Task>> PostTask([FromForm] Models.Task task, IFormFile file)
         {
             if (!ModelState.IsValid)
             {
@@ -204,6 +204,21 @@ namespace ProjectManagementSystem.ApiControllers
             {
                 return Conflict(FormResponse("Таке завдання вже існує.", 409));
             }*/
+
+            string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+            if (file != null && file.Length > 0)
+            {
+                var filePath = Path.Combine("wwwroot/uploads", file.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                task.FileUrl = filePath;
+            }
 
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();

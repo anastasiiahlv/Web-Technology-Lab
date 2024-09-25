@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PfSbu7k9z5m0F0wpT3JJlbjs0amdeO+ImeTJGessBgc=",
+  "Hash": "TQCV2DDDmKJPcJTYT26HGuXl1M49Xaejr16Er4kDvws=",
   "Source": "ProjectManagementSystem",
   "BasePath": "_content/ProjectManagementSystem",
   "Mode": "Default",
@@ -1364,6 +1364,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\uploads\\web-lab-use-case.drawio.pdf",
+      "SourceId": "ProjectManagementSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\",
+      "BasePath": "_content/ProjectManagementSystem",
+      "RelativePath": "uploads/web-lab-use-case.drawio.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\web-lab-use-case.drawio.pdf"
     }
   ]
 }

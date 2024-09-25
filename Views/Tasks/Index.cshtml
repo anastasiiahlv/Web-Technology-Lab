@@ -70,3 +70,34 @@
 }
     </tbody>
 </table>
+
+<div class="container">
+    <div id="taskStatusPieChart"></div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.get('api/Charts/TaskStatusCountsJson', function (JsonData) {
+                var data = google.visualization.arrayToDataTable(JsonData.$values, false); 
+
+                var options = {
+                    title: "Розподіл завдань за статусами",
+                    titleTextStyle: {
+                        fontSize: 22,
+                        bold: true
+                    },
+                    width: 600,
+                    height: 500
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('taskStatusPieChart'));
+                chart.draw(data, options);
+            });
+        }
+    </script>
+}
