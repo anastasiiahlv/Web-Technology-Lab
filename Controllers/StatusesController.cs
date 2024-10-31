@@ -6,22 +6,39 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectManagementSystem.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ProjectManagementSystem.Controllers
 {
     public class StatusesController : Controller
     {
         private readonly ProjectManagementSystemContext _context;
+        private readonly IMemoryCache _cache;
+        private const string CacheKey = "statusesList";
 
-        public StatusesController(ProjectManagementSystemContext context)
+        public StatusesController(ProjectManagementSystemContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache;
         }
 
         // GET: Statuses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Statuses.Include(s => s.Tasks).ToListAsync());
+            if (!_cache.TryGetValue(CacheKey, out List<Status>? statuses))
+            {
+                // Кеш не знайдено, отримуємо дані з БД
+                statuses = await _context.Statuses.Include(s => s.Tasks).ToListAsync();
+
+                // Налаштування параметрів кешування
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))  // Час збереження в кеші
+                    .SetAbsoluteExpiration(TimeSpan.FromHours(1)); // Загальний час існування в кеші
+
+                _cache.Set(CacheKey, statuses, cacheEntryOptions);
+            }
+
+            return View(statuses);
         }
 
         // GET: Statuses/Details/5
@@ -50,8 +67,6 @@ namespace ProjectManagementSystem.Controllers
         }
 
         // POST: Statuses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Status status)
@@ -67,6 +82,10 @@ namespace ProjectManagementSystem.Controllers
 
                 _context.Add(status);
                 await _context.SaveChangesAsync();
+
+                // Очистка кешу після створення нового статусу
+                _cache.Remove(CacheKey);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(status);
@@ -89,8 +108,6 @@ namespace ProjectManagementSystem.Controllers
         }
 
         // POST: Statuses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Status status)
@@ -106,6 +123,9 @@ namespace ProjectManagementSystem.Controllers
                 {
                     _context.Update(status);
                     await _context.SaveChangesAsync();
+
+                    // Очистка кешу після редагування статусу
+                    _cache.Remove(CacheKey);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -150,9 +170,12 @@ namespace ProjectManagementSystem.Controllers
             if (status != null)
             {
                 _context.Statuses.Remove(status);
+                await _context.SaveChangesAsync();
+
+                // Очистка кешу після видалення статусу
+                _cache.Remove(CacheKey);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -160,5 +183,15 @@ namespace ProjectManagementSystem.Controllers
         {
             return _context.Statuses.Any(e => e.Id == id);
         }
+
+        public IActionResult CheckCache()
+        {
+            if (_cache.TryGetValue(CacheKey, out List<Status>? statuses))
+            {
+                return Json(new { cached = true, count = statuses.Count });
+            }
+            return Json(new { cached = false });
+        }
     }
 }
+
