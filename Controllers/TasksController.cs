@@ -125,7 +125,7 @@ namespace ProjectManagementSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Description", task.ProjectId);
+            ViewData["ProjectId"] = new SelectList(_context.Projects, "Id", "Name", task.ProjectId);
             ViewData["StatusId"] = new SelectList(_context.Statuses, "Id", "Name", task.StatusId);
             ViewData["Employees"] = new MultiSelectList(_context.Employees, "Id", "FullName", task.Employees.Select(e => e.Id));
             return View(task);

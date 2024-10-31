@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\0043468d-574d-46c2-89df-854fd3c82adb_Голова-Анастасія-ТТП32-дз6.pdf",
+      "PackagePath": "staticwebassets\\files\\0043468d-574d-46c2-89df-854fd3c82adb_Голова-Анастасія-ТТП32-дз6.pdf"
+    },
+    {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\3178c06a-cfec-438a-ae69-d88fc618ea92_web-lab-use-case.drawio.pdf",
       "PackagePath": "staticwebassets\\files\\3178c06a-cfec-438a-ae69-d88fc618ea92_web-lab-use-case.drawio.pdf"
     },
@@ -23,6 +27,10 @@
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\55066b0e-c65d-4dce-b3ad-e0cf3d4c14ea_web-lab-use-case.drawio.pdf",
       "PackagePath": "staticwebassets\\files\\55066b0e-c65d-4dce-b3ad-e0cf3d4c14ea_web-lab-use-case.drawio.pdf"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\598dd514-b211-4b67-9c22-e7506d7b405a_Голова-Анастасія-ТТП32-дз5.pdf",
+      "PackagePath": "staticwebassets\\files\\598dd514-b211-4b67-9c22-e7506d7b405a_Голова-Анастасія-ТТП32-дз5.pdf"
     },
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\5ccae928-55ea-4851-b6d8-8ffe7350976d_web-lab-drawsql.png",
@@ -37,6 +45,10 @@
       "PackagePath": "staticwebassets\\files\\a5b66a06-e914-4d1c-b27a-a75c1d738aa2_web-lab-use-case.drawio.pdf"
     },
     {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\ae3547f7-ebc0-49ac-afeb-af504169cbd4_К27Голова_Есе.pdf",
+      "PackagePath": "staticwebassets\\files\\ae3547f7-ebc0-49ac-afeb-af504169cbd4_К27Голова_Есе.pdf"
+    },
+    {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\afbd10cb-351a-4e5a-a5ee-e6c4b3b5e2ed_web-lab-drawsql.png",
       "PackagePath": "staticwebassets\\files\\afbd10cb-351a-4e5a-a5ee-e6c4b3b5e2ed_web-lab-drawsql.png"
     },
@@ -47,6 +59,10 @@
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\d2db7c89-1baa-4ff8-be17-de77c4196852_web-lab-use-case.drawio.pdf",
       "PackagePath": "staticwebassets\\files\\d2db7c89-1baa-4ff8-be17-de77c4196852_web-lab-use-case.drawio.pdf"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\files\\f6cd5f6b-39ba-4b1d-ac82-49bcd38595e9_тп-дз6.pdf",
+      "PackagePath": "staticwebassets\\files\\f6cd5f6b-39ba-4b1d-ac82-49bcd38595e9_тп-дз6.pdf"
     },
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\js\\site.js",
@@ -157,32 +173,8 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
-    },
-    {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
-    },
-    {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
-    },
-    {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
-    },
-    {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
-    },
-    {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
-    },
-    {
-      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
@@ -279,6 +271,14 @@
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\uploads\\project.jpg",
+      "PackagePath": "staticwebassets\\uploads\\project.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\uploads\\project1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\project1.jpg"
     },
     {
       "Id": "C:\\Users\\USER\\Desktop\\univ\\web технології\\ProjectManagementSystem\\wwwroot\\uploads\\web-lab-use-case.drawio.pdf",

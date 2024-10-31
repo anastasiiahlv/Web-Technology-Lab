@@ -1,0 +1,24 @@
+﻿@model ProjectManagementSystem.Models.Task
+
+<div class="card h-100">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text"><strong>Опис:</strong> @Model.Description</p>
+        <p class="card-text"><strong>Термін виконання:</strong> @Model.DueDate.ToString("dd.MM.yyyy")</p>
+        @if (!string.IsNullOrEmpty(Model.FileUrl))
+        {
+            <p class="card-text"><strong>Файл:</strong> <a href="@Model.FileUrl" target="_blank">Завантажити файл</a></p>
+        }
+        <p class="card-text"><strong>Статус:</strong> @(Model.Status?.Name ?? "Невідомо")</p>
+        @if (Model.Employees.Any())
+        {
+            <p class="card-text"><strong>Виконавці:</strong> @string.Join(", ", Model.Employees.Select(e => e.Name))</p>
+        }
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a href="@Url.Action("Edit", "Tasks", new { id = Model.Id })" class="btn btn-sm btn-warning">Редагувати</a>
+        <a href="@Url.Action("Delete", "Tasks", new { id = Model.Id })" class="btn btn-sm btn-danger">Видалити</a>
+    </div>
+</div>
+
+

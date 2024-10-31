@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|solutionrelative:views\\projects\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\views\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|solutionrelative:views\\projects\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\controllers\\chartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|solutionrelative:controllers\\chartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\views\\tasks\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|solutionrelative:views\\tasks\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\views\\tasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3981CBE1-C2DD-4C41-B458-13FBC423A6FA}|ProjectManagementSystem.csproj|solutionrelative:views\\tasks\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|c:\\users\\user\\desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\projectmanagementsystem\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C26ACD19-F944-443E-8293-6386243C7E34}|ProjectManagementSystem.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Projects\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Projects\\Index.cshtml",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Projects\\Index.cshtml",
-              "RelativeToolTip": "Views\\Projects\\Index.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAD0AAAAiAAAA",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Tasks\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Tasks\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Tasks\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Tasks\\Edit.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAoAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-25T19:31:24.239Z",
+              "WhenOpened": "2024-10-31T00:09:57.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Projects\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Projects\\Details.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Projects\\Details.cshtml",
+              "RelativeToolTip": "Views\\Projects\\Details.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-28T19:07:03.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAACoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-30T22:39:13.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAB4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-28T21:08:28.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Tasks\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Tasks\\Index.cshtml",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Views\\Tasks\\Index.cshtml",
-              "RelativeToolTip": "Views\\Tasks\\Index.cshtml",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAqwGUAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-25T18:49:53.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChartsController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Controllers\\ChartsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ChartsController.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Controllers\\ChartsController.cs",
-              "RelativeToolTip": "Controllers\\ChartsController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAUwEIAAAAAAAAA",
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Controllers\\TasksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TasksController.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\univ\\web \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u0457\\ProjectManagementSystem\\Controllers\\TasksController.cs",
+              "RelativeToolTip": "Controllers\\TasksController.cs",
+              "ViewState": "AQIAAOkAAAAAAAAAAAAuwPYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T18:39:11.026Z",
+              "WhenOpened": "2024-10-28T20:52:48.551Z",
               "EditorCaption": ""
             }
           ]

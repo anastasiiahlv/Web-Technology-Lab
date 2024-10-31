@@ -21,26 +21,22 @@ namespace ProjectManagementSystem.Controllers
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            var projectManagementSystemContext = _context.Projects
-                .Include(e => e.Tasks);
-            return View(await projectManagementSystemContext.ToListAsync());
+            var projects = await _context.Projects
+                .Include(e => e.Tasks).ThenInclude(t => t.Status)
+                .ToListAsync();
+            return View(projects);
         }
 
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var project = await _context.Projects
-                .Include(p => p.Tasks)
+                .Include(p => p.Tasks).ThenInclude(t => t.Status)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
-            {
-                return NotFound();
-            }
+
+            if (project == null) return NotFound();
 
             return View(project);
         }
@@ -53,113 +49,77 @@ namespace ProjectManagementSystem.Controllers
         }
 
         // POST: Projects/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Tasks")] Project project, int[] Tasks)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description")] Project project, int[] Tasks)
         {
-            if (Tasks != null)
+            if (ModelState.IsValid)
             {
-                foreach (var taskId in Tasks)
-                {
-                    var task = await _context.Tasks.FindAsync(taskId);
-                    if (task != null)
-                    {
-                        project.Tasks.Add(task);
-                    }
-                }
+                project.Tasks = await GetSelectedTasks(Tasks);
+                _context.Add(project);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
 
-            _context.Add(project);
-            await _context.SaveChangesAsync();
-
-            ViewData["Tasks"] = new MultiSelectList(_context.Tasks, "Id", "Name", project.Tasks.Select(t => t.Id));
-            return RedirectToAction(nameof(Index));
+            ViewData["Tasks"] = new MultiSelectList(_context.Tasks, "Id", "Name", Tasks);
+            return View(project);
         }
 
         // GET: Projects/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var project = await _context.Projects
-                .Include(e => e.Tasks)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
-            {
-                return NotFound();
-            }
+                .Include(p => p.Tasks).ThenInclude(t => t.Status)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (project == null) return NotFound();
+
             ViewData["Tasks"] = new MultiSelectList(_context.Tasks, "Id", "Name", project.Tasks.Select(t => t.Id));
             return View(project);
         }
 
         // POST: Projects/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Project project, int[] Tasks)
         {
-            if (id != project.Id)
+            if (id != project.Id) return NotFound();
+
+            if (ModelState.IsValid)
             {
-                return NotFound();
-            }
+                var projectToUpdate = await _context.Projects
+                    .Include(p => p.Tasks).ThenInclude(t => t.Status)
+                    .FirstOrDefaultAsync(p => p.Id == id);
 
-            try
-            {
-                _context.Update(project);
-                await _context.SaveChangesAsync();
+                if (projectToUpdate == null) return NotFound();
 
-                var projectInDb = await _context.Projects
-                .Include(e => e.Tasks)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                // Оновлення даних проєкту
+                projectToUpdate.Name = project.Name;
+                projectToUpdate.Description = project.Description;
 
-                projectInDb?.Tasks.Clear();
-                foreach (var taskId in Tasks)
-                {
-                    var task = await _context.Tasks.FindAsync(taskId);
-                    if (task != null)
-                    {
-                        projectInDb?.Tasks.Add(task);
-                    }
-                }
+                // Оновлення зв'язків із завданнями
+                await UpdateProjectTasks(projectToUpdate, Tasks);
 
                 await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProjectExists(project.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+            ViewData["Tasks"] = new MultiSelectList(_context.Tasks, "Id", "Name", Tasks);
+            return View(project);
         }
 
         // GET: Projects/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var project = await _context.Projects
-                .Include(p => p.Tasks)
+                .Include(p => p.Tasks).ThenInclude(t => t.Status)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
-            {
-                return NotFound();
-            }
+
+            if (project == null) return NotFound();
 
             return View(project);
         }
@@ -173,9 +133,8 @@ namespace ProjectManagementSystem.Controllers
             if (project != null)
             {
                 _context.Projects.Remove(project);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
@@ -183,5 +142,39 @@ namespace ProjectManagementSystem.Controllers
         {
             return _context.Projects.Any(e => e.Id == id);
         }
+
+        private async Task<List<Models.Task>> GetSelectedTasks(int[] taskIds)
+        {
+            return await _context.Tasks
+                .Where(t => taskIds.Contains(t.Id))
+                .ToListAsync();
+        }
+
+        private async System.Threading.Tasks.Task UpdateProjectTasks(Project project, int[] taskIds)
+        {
+            var selectedTasks = await GetSelectedTasks(taskIds);
+
+            project.Tasks.Clear();
+            foreach (var task in selectedTasks)
+            {
+                project.Tasks.Add(task);
+            }
+        }
+
+        public async Task<IActionResult> SearchTasks(int id, string term)
+        {
+            var project = await _context.Projects
+                .Include(p => p.Tasks).ThenInclude(t => t.Status)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (project == null) return NotFound();
+
+            var filteredTasks = project.Tasks
+                .Where(t => t.Name.Contains(term, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            return PartialView("_TaskList", filteredTasks);
+        }
     }
 }
+
