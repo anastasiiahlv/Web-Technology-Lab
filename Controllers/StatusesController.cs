@@ -27,13 +27,13 @@ namespace ProjectManagementSystem.Controllers
         {
             if (!_cache.TryGetValue(CacheKey, out List<Status>? statuses))
             {
-                // Кеш не знайдено, отримуємо дані з БД
+                // Cache not found, retrieving data from the database
                 statuses = await _context.Statuses.Include(s => s.Tasks).ToListAsync();
 
-                // Налаштування параметрів кешування
+                // Set cache entry options
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))  // Час збереження в кеші
-                    .SetAbsoluteExpiration(TimeSpan.FromHours(1)); // Загальний час існування в кеші
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))  // Cache sliding expiration time
+                    .SetAbsoluteExpiration(TimeSpan.FromHours(1)); // Total cache lifespan
 
                 _cache.Set(CacheKey, statuses, cacheEntryOptions);
             }
@@ -49,12 +49,28 @@ namespace ProjectManagementSystem.Controllers
                 return NotFound();
             }
 
-            var status = await _context.Statuses
-                .Include(s => s.Tasks)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (status == null)
+            // Define a cache key specific to the status details
+            var cacheKey = $"statusDetails-{id}";
+
+            if (!_cache.TryGetValue(cacheKey, out Status? status))
             {
-                return NotFound();
+                // Cache not found, retrieve from the database
+                status = await _context.Statuses
+                    .Include(s => s.Tasks)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
+                if (status == null)
+                {
+                    return NotFound();
+                }
+
+                // Set cache options
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5))  // Cache expiration time
+                    .SetAbsoluteExpiration(TimeSpan.FromHours(1)); // Total cache lifespan
+
+                // Save the status in cache
+                _cache.Set(cacheKey, status, cacheEntryOptions);
             }
 
             return View(status);
@@ -76,14 +92,14 @@ namespace ProjectManagementSystem.Controllers
                 var existingStatus = await _context.Statuses.FirstOrDefaultAsync(s => s.Name == status.Name);
                 if (existingStatus != null)
                 {
-                    ModelState.AddModelError("Name", "Статус з такою назвою вже існує.");
+                    ModelState.AddModelError("Name", "A status with this name already exists.");
                     return View(status);
                 }
 
                 _context.Add(status);
                 await _context.SaveChangesAsync();
 
-                // Очистка кешу після створення нового статусу
+                // Clear the cache after creating a new status
                 _cache.Remove(CacheKey);
 
                 return RedirectToAction(nameof(Index));
@@ -124,7 +140,7 @@ namespace ProjectManagementSystem.Controllers
                     _context.Update(status);
                     await _context.SaveChangesAsync();
 
-                    // Очистка кешу після редагування статусу
+                    // Clear the cache after editing the status
                     _cache.Remove(CacheKey);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -172,7 +188,7 @@ namespace ProjectManagementSystem.Controllers
                 _context.Statuses.Remove(status);
                 await _context.SaveChangesAsync();
 
-                // Очистка кешу після видалення статусу
+                // Clear the cache after deleting the status
                 _cache.Remove(CacheKey);
             }
 
@@ -194,4 +210,5 @@ namespace ProjectManagementSystem.Controllers
         }
     }
 }
+
 
